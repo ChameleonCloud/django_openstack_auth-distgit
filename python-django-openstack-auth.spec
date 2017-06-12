@@ -8,7 +8,7 @@
 
 Name:           python-django-openstack-auth
 Version:        2.0.1
-Release:        1%{?dist}
+Release:        1.1%{?dist}
 Summary:        Django authentication backend for OpenStack Keystone
 
 License:        BSD
@@ -17,7 +17,7 @@ Source0:        http://pypi.python.org/packages/source/d/%{pypi_name}/%{pypi_nam
 
 BuildArch:      noarch
 
-
+Patch0001:      0001-chameleon-customize-login-error.patch
 
 %description
 Django OpenStack Auth is a pluggable Django authentication backend that
@@ -110,6 +110,7 @@ Keystone V2 API.
 %prep
 %setup -q -n %{pypi_name}-%{version}
 
+%patch0001 -p1
 
 # Remove the requirements file so that pbr hooks don't add it
 # to distutils requires_dist config

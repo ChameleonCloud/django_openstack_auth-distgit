@@ -1,0 +1,22 @@
+--- a/openstack_auth/backend.py 2016-02-12 10:35:37.844194689 +0000
++++ b/openstack_auth/backend.py 2016-02-12 10:37:15.718194689 +0000
+@@ -19,6 +19,7 @@
+
+ from django.conf import settings
+ from django.utils.module_loading import import_string  # noqa
++from django.utils.safestring import mark_safe
+ from django.utils.translation import ugettext_lazy as _
+ from keystoneclient import exceptions as keystone_exceptions
+
+@@ -118,7 +119,8 @@
+                 keystone_exceptions.Forbidden,
+                 keystone_exceptions.NotFound) as exc:
+             LOG.debug(str(exc))
+-            raise exceptions.KeystoneAuthException(_('Invalid credentials.'))
++            msg = _(mark_safe('Invalid credentials.<br />Please see <a href="https://www.chameleoncloud.org/docs/user-faq/">our User FAQ</a> for help.'))
++            raise exceptions.KeystoneAuthException(msg)
+         except (keystone_exceptions.ClientException,
+                 keystone_exceptions.AuthorizationFailure) as exc:
+             msg = _("An error occurred authenticating. "
+
+
