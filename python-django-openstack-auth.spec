@@ -7,14 +7,15 @@
 
 Name:           python-django-openstack-auth
 Version:        3.1.1
-Release:        1.1%{?dist}
+Release:        1.2%{?dist}
 Summary:        Django authentication backend for OpenStack Keystone
 
 License:        BSD
 URL:            http://pypi.python.org/pypi/django_openstack_auth/
 Source0:        https://tarballs.openstack.org/django_openstack_auth/django_openstack_auth-%{upstream_version}.tar.gz
 
-Patch0001:      0001-Customize-error-message-on-authentication-failure.patch
+Patch0001:      0002-Customize-error-message-on-authentication-failure.patch
+Patch0002:      0003-Allow-for-manual-setting-of-default-service-region-i.patch
 
 BuildArch:      noarch
 
@@ -185,8 +186,8 @@ export PYTHONPATH=$PYTHONPATH
 %endif
 
 %changelog
-* Mon Jul 10 2017 Pierre Riteau <priteau@uchicago.edu> 3.1.1-1.1
-- Add Chameleon patch
+* Fri Jun 8 2018 Pierre Riteau <priteau@uchicago.edu> 3.1.1-1.2
+- Add Chameleon patches
 
 * Fri Feb 10 2017 Alfredo Moralejo <amoralej@redhat.com> 3.1.1-1
 - Update to 3.1.1
